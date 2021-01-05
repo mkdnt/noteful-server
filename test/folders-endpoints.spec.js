@@ -14,11 +14,15 @@ describe("Folder Endpoints", function () {
     app.set("db", db);
   });
 
-  after('disconnect from db', () => db.destroy())
+  after("disconnect from db", () => db.destroy());
 
-  before('clean the table', () => db('noteful_folders').truncate())
+  before("clean the table", () =>
+    db.raw("TRUNCATE noteful_folders, noteful_notes RESTART IDENTITY CASCADE")
+  );
 
-  afterEach('cleanup',() => db('noteful_folders').truncate())
+  afterEach("cleanup", () =>
+    db.raw("TRUNCATE noteful_folders, noteful_notes RESTART IDENTITY CASCADE")
+  );
 
   describe(`GET /api/folders`, () => {
     context("Given there are folders in the database", () => {

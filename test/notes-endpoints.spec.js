@@ -16,9 +16,13 @@ describe("Notes Endpoints", function () {
 
   after("disconnect from db", () => db.destroy());
 
-  before("clean the table", () => db("noteful_notes").truncate());
+  before("clean the table", () =>
+    db.raw("TRUNCATE noteful_folders, noteful_notes RESTART IDENTITY CASCADE")
+  );
 
-  afterEach("cleanup", () => db("noteful_notes").truncate());
+  afterEach("cleanup", () =>
+    db.raw("TRUNCATE noteful_folders, noteful_notes RESTART IDENTITY CASCADE")
+  );
 
   describe(`GET /api/notes`, () => {
     context(`Given no notes`, () => {
@@ -196,7 +200,7 @@ describe("Notes Endpoints", function () {
     });
   });
 
-  describe.only(`PATCH /api/notes/:note_id`, () => {
+  describe(`PATCH /api/notes/:note_id`, () => {
     context(`Given no notes`, () => {
       it(`responds with 404`, () => {
         const noteId = 123456;
