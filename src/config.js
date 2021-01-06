@@ -8,5 +8,5 @@ module.exports = {
     process.env.TEST_DATABASE_URL ||
     "postgresql://MikeDent@localhost/noteful-test",
   CLIENT_ORIGIN:
-    process.env.CLIENT_ORIGIN || "https://noteful-beta-bice.vercel.app/",
+    process.env.CLIENT_ORIGIN || "https://noteful-beta-bice.vercel.app",
 };
