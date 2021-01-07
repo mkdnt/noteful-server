@@ -11,7 +11,6 @@
     "migrate": "postgrator --config postgrator-config.js",
     "migrate:test": "env NODE_ENV=test npm run migrate",
     "migrate:production": "heroku run npm run migrate",
-    "predeploy": "npm audit",
     "deploy": "git push heroku master:main"
   },
   "keywords": [],
